@@ -18,8 +18,6 @@ The following user stories describe what should be possible to do through this A
 - A user can cancel the own booking
 - A user can view all of the bookings
 - A user can invite other users to the booking
-- A user can add rooms
-- A user can remove rooms
 
 # Skeleton
 

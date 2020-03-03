@@ -3,7 +3,7 @@
 module Api
   module V1
     class BookingsController < ApplicationController
-      # you can find these includes in controllers/concers
+      # you can find these includes in controllers/concerns
       include Response
       include ExceptionHandler
 

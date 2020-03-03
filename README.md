@@ -33,7 +33,7 @@ We bootstrapped a skeleton for you. We covered the authentication part for you a
 
 ## Timeline
 
-Our employees are expecting to be able to use this app in 1 week. Move fast hombre!
+Our employees are expecting to be able to use this app in 1 week. Move fast!
 
 ## Questions
 

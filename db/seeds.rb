@@ -9,11 +9,10 @@ Booking.delete_all
 Room.delete_all
 User.delete_all
 
-name = Faker::Games::Pokemon.location
-
 puts 'Creating rooms'
 
 5.times do
+  name = Faker::Games::Pokemon.location
   Room.create!(name: name)
 end
 

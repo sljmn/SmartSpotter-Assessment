@@ -14,8 +14,8 @@ The following user stories describe what should be possible to do through this A
 
 - A visitor can sign up (only with an "@evil-corp.com" e-mail address though)
 - A user can book a room, without conflicting times and dates. So you can't book an occupied room.
-- A user can update the own booking
-- A user can cancel the own booking
+- A user can update their own booking
+- A user can cancel their own booking
 - A user can view all of the bookings
 - A user can invite other users to the booking
 

@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   # write your code here
 
-  has_many 
-  validates_presence_of
+  has_many :bookings, dependent: :destroy
+  validates_presence_of :name, :email, :password, :password_digest
 
   # write your code here
 end

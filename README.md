@@ -37,7 +37,7 @@ Our employees are expecting to be able to use this app in 1 week. Move fast!
 
 ## Questions
 
-Please contact us if you have any questions. There is no right or wrong question and we rather help you than have you get stuck for hours. Feel free to slack me (Bob) for example.
+Please contact us if you have any questions. There is no right or wrong question and we rather help you than have you get stuck for hours. Feel free to contact Martijn: martijn@smartspotter.com
 
 ## Getting Started
 

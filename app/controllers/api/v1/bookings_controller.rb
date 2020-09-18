@@ -6,19 +6,47 @@ module Api
       # you can find these includes in controllers/concerns
       include Response
       include ExceptionHandler
+      include ActionController::MimeResponds
 
       def index
         bookings = Booking.all
-        json_response(bookings)
+      #  json_response(bookings)
+        render json: bookings
       end
 
-      def show
-        # Write your code here
+      def new
+        #@booking = Booking.new
       end
 
       def create
         # Write your code here
+        @booking = current_user.bookings.build(booking_params)
+        @booking.user_id = current_user.id
+        puts "PARAMS"
+        puts params
+
+         if @booking.save
+
+           render json: "booking created!"
+         else
+           render json: "booking NOT created!"
+
+         end
+
       end
+
+
+
+      def show
+        # Write your code here
+
+        @booking = Booking.find(params[:id])
+
+        @rooms = Room.find(params[:room_id])
+          render json: @booking
+      end
+
+
 
       def update
         # Write your code here
@@ -30,10 +58,20 @@ module Api
 
       private
 
-      def booking_params
-        params.permit
+
+
         # Write your code here
+
+        def booking_params
+          params.permit(
+            :start_time,
+            :end_time,
+            :date,
+            :room_id,
+            :user_id
+          )
+        end
+
       end
     end
   end
-end

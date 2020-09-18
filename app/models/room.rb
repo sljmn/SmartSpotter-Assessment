@@ -2,4 +2,5 @@
 
 class Room < ApplicationRecord
   # Write your code here
+  has_one :booking
 end

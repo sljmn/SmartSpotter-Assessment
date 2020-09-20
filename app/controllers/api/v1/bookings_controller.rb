@@ -14,31 +14,33 @@ module Api
         render json: bookings
       end
 
-      def new
-        #@booking = Booking.new
-      end
+
 
       def create
-        # Write your code here
-        @booking = current_user.bookings.build(booking_params)
-        @booking.user_id = current_user.id
-        puts "PARAMS"
-        puts params
+ 
+      @booking =  current_user.bookings.build(booking_params)
 
-         if @booking.save
+      booking = Booking.test(booking_params)
 
-           render json: "booking created!"
-         else
-           render json: "booking NOT created!"
 
-         end
+      puts params.inspect
 
+       puts @booking.inspect
+
+        if @booking.save
+          render json: @booking
+          puts "SAVED"
+        else
+          render json: "something went wrong..."
+
+        end
       end
 
 
 
       def show
         # Write your code here
+
 
         @booking = Booking.find(params[:id])
 

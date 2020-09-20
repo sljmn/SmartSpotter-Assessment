@@ -13,11 +13,19 @@ class Booking < ApplicationRecord #::Base
 
 
 
-
 #
 #   # Write your code here
-#      def self.test(params)
+    def self.test(params)
 #
+include SlotMachine::Slot
+
+start_time = params[:start_time]
+end_time = params[:end_time]
+
+ts = TimeSlot.new start_time..end_time
+puts ts.inspect
+
+puts "TSS"
 #       require 'time'
 #       puts "Initialize....."
 #       puts params
@@ -41,7 +49,7 @@ class Booking < ApplicationRecord #::Base
 #      puts  DateTime.now.between?(@start_time, @end_time)
 #     is_available
 #
-#    end
+   end
 #
 #
 #

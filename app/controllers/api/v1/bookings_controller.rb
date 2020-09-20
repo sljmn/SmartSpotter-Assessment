@@ -21,9 +21,9 @@ module Api
 
       @booking =  current_user.bookings.build(booking_params)
 
-      #booking = Booking.test(booking_params)
+      booking = Booking.test(booking_params)
 
-      
+
 
       puts params.inspect
 

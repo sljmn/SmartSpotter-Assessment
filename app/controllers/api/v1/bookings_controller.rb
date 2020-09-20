@@ -8,6 +8,7 @@ module Api
       include ExceptionHandler
       include ActionController::MimeResponds
 
+
       def index
         bookings = Booking.all
       #  json_response(bookings)
@@ -17,11 +18,12 @@ module Api
 
 
       def create
- 
+
       @booking =  current_user.bookings.build(booking_params)
 
-      booking = Booking.test(booking_params)
+      #booking = Booking.test(booking_params)
 
+      
 
       puts params.inspect
 

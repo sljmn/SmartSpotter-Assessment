@@ -10,9 +10,14 @@ module Api
 
 
       def index
-        bookings = Booking.all
+      #  @bookings = Booking.all
+      #  booking = Booking.find(params[:id])
+        rooms = Room.find(params[:room_id])
+        bookings = rooms.bookings.all
+          render json: bookings
       #  json_response(bookings)
-        render json: bookings
+      #  render json: bookings
+
       end
 
 
@@ -28,6 +33,15 @@ module Api
       puts params.inspect
 
        puts @booking.inspect
+
+
+       if Booking.vrij == true
+         puts "from bookings#controller is wel beshcikbaar. WEL VRIJ"
+
+      else
+        puts  "from de bookings#controller, not avail i guess NIET VRIJ"
+
+       end
 
         if @booking.save
           render json: @booking
@@ -48,6 +62,7 @@ module Api
 
         @rooms = Room.find(params[:room_id])
           render json: @booking
+          render json: "TEST"
       end
 
 

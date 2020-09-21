@@ -5,18 +5,7 @@ class Booking < ApplicationRecord #::Base
   belongs_to :user
   belongs_to :room
 
-  #validates :start_time, :end_time, :overlap => {:load_overlapped => true}
-
-  #validates :start_time, :end_time, :overlap => true
-
-
-
-
-#
-#   # Write your code here
     def self.test(params)
-#
-
 
   start_time = params[:start_time].to_i
   puts start_time.class
@@ -24,7 +13,7 @@ class Booking < ApplicationRecord #::Base
   date = params[:date]
   room_id = params[:room_id]
 
-   bookings_that_day = bookings = Booking.where('date BETWEEN ? AND ?', @date, @date) #.where('room_id = ?', room_id)
+
 
   bookings_that_day = bookings = Booking.where('date = ?', date).where('room_id = ?', room_id)
 
@@ -39,24 +28,21 @@ class Booking < ApplicationRecord #::Base
      puts "there is #{x.size} match in that time slot, so it is occupied. Book another time slot, please. "
      puts x.inspect
      puts "SEEE ABOVE"
+     taken = []
+     taken << x
     puts  booking.start_time.inspect
     puts booking.end_time.inspect
-     #   puts ts
-     #
+
+      timeslot_taken?(taken)
+
       end
 
 
-  # de ingevoerde start en end time matchen met alle bookeings op die dag
-
-  # als er een match is, afwijzen
-  # als er een match is = overlap = true
-  # als overlap true is, create action niet uitvoeren!
 
 
 
-  puts ts.inspect
 
-puts "TSS"
+
 #       require 'time'
 #       puts "Initialize....."
 #       puts params
@@ -82,6 +68,30 @@ puts "TSS"
 #
    end
 #
+def self.timeslot_taken?(arr)
+  puts arr
+  puts arr.inspect
+  puts "zie hierboven de ARRAY"
+  puts arr.size
+  if arr.size == 1
+    puts "from the if s tatement in timeslot_taken?"
+    puts "calling before create!"
+    puts " de arrey hier onder"
+    puts arr.inspect
+    puts arr.size.to_s + " length of array is <<<"
+     vrij
+  end
+
+end
+
+def self.vrij
+
+  puts "DIT IS TESTER SELF YOYO"
+#  puts " CANCEL. This timeslot isnt available"
+puts "SLOT IS VRIJ! BOEKEN MAAR"
+  puts true
+  return true
+end
 #
 #
 #     def self.is_available

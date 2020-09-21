@@ -12,18 +12,49 @@ class Booking < ApplicationRecord #::Base
 
 
 
-
 #
 #   # Write your code here
     def self.test(params)
 #
-include SlotMachine::Slot
 
-start_time = params[:start_time]
-end_time = params[:end_time]
 
-ts = TimeSlot.new start_time..end_time
-puts ts.inspect
+  start_time = params[:start_time].to_i
+  puts start_time.class
+  end_time = params[:end_time].to_i
+  date = params[:date]
+  room_id = params[:room_id]
+
+   bookings_that_day = bookings = Booking.where('date BETWEEN ? AND ?', @date, @date) #.where('room_id = ?', room_id)
+
+  bookings_that_day = bookings = Booking.where('date = ?', date).where('room_id = ?', room_id)
+
+     puts "ON DATE #{date} we have #{bookings_that_day.size} bookings"
+
+     bookings_that_day.inspect
+     ts = TimeSlot.new start_time..end_time
+     #puts ts
+      bookings_that_day.each do |booking|
+     #
+     x = ts.match booking.start_time..booking.end_time
+     puts "there is #{x.size} match in that time slot, so it is occupied. Book another time slot, please. "
+     puts x.inspect
+     puts "SEEE ABOVE"
+    puts  booking.start_time.inspect
+    puts booking.end_time.inspect
+     #   puts ts
+     #
+      end
+
+
+  # de ingevoerde start en end time matchen met alle bookeings op die dag
+
+  # als er een match is, afwijzen
+  # als er een match is = overlap = true
+  # als overlap true is, create action niet uitvoeren!
+
+
+
+  puts ts.inspect
 
 puts "TSS"
 #       require 'time'
@@ -98,4 +129,8 @@ puts "TSS"
 #    @overlapped_records || []
 #  end
 
+end
+
+class Slot
+  include SlotMachine::Slot
 end

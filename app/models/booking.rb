@@ -30,6 +30,7 @@ class Booking < ApplicationRecord #::Base
      puts "SEEE ABOVE"
      taken = []
      taken << x
+
     puts  booking.start_time.inspect
     puts booking.end_time.inspect
 
@@ -41,6 +42,45 @@ class Booking < ApplicationRecord #::Base
 
 
 
+
+
+#
+   end
+#
+def self.timeslot_taken?(arr)
+  puts arr
+  puts arr.inspect
+  puts "zie hierboven de ARRAY"
+  puts arr.size
+
+  if arr.size == 0
+    puts "****************************************"
+    puts "hij is VRIJ"
+    vrij
+
+   if arr.size <= 1
+
+     puts "HIJ IS BEZET!"
+     puts "from the if s tatement in timeslot_taken?"
+     puts "calling before create!"
+     puts " de arrey hier onder"
+
+     puts arr.inspect
+     puts arr.size.to_s + " length of array is <<<"
+   end 
+
+  end
+
+end
+
+def self.vrij
+
+  puts "DIT IS TESTER SELF YOYO"
+puts "SLOT IS VRIJ! BOEKEN MAAR"
+  puts true
+  return true
+end
+#
 
 
 #       require 'time'
@@ -65,34 +105,7 @@ class Booking < ApplicationRecord #::Base
 #      puts "starttime #{@start_time} and end time #{@end_time} on #{@date}, in room #{@room_id} "
 #      puts  DateTime.now.between?(@start_time, @end_time)
 #     is_available
-#
-   end
-#
-def self.timeslot_taken?(arr)
-  puts arr
-  puts arr.inspect
-  puts "zie hierboven de ARRAY"
-  puts arr.size
-  if arr.size == 1
-    puts "from the if s tatement in timeslot_taken?"
-    puts "calling before create!"
-    puts " de arrey hier onder"
-    puts arr.inspect
-    puts arr.size.to_s + " length of array is <<<"
-     vrij
-  end
 
-end
-
-def self.vrij
-
-  puts "DIT IS TESTER SELF YOYO"
-#  puts " CANCEL. This timeslot isnt available"
-puts "SLOT IS VRIJ! BOEKEN MAAR"
-  puts true
-  return true
-end
-#
 #
 #     def self.is_available
 #

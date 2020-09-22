@@ -25,7 +25,6 @@ module Api
       def create
 
       @booking =  current_user.bookings.build(booking_params)
-
       booking = Booking.test(booking_params)
 
 
@@ -35,13 +34,13 @@ module Api
        puts @booking.inspect
 
 
-       if Booking.vrij == true
-         puts "from bookings#controller is wel beshcikbaar. WEL VRIJ"
-
-      else
-        puts  "from de bookings#controller, not avail i guess NIET VRIJ"
-
-       end
+      #  if Booking.vrij == true
+      #    puts "from bookings#controller is wel beshcikbaar. WEL VRIJ"
+      #
+      # else
+      #   puts  "from de bookings#controller, not avail i guess NIET VRIJ"
+      #
+      #  end
 
         if @booking.save
           render json: @booking

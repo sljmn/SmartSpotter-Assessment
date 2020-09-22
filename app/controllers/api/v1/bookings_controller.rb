@@ -12,41 +12,44 @@ module Api
       def index
       #  @bookings = Booking.all
       #  booking = Booking.find(params[:id])
-        rooms = Room.find(params[:room_id])
-        bookings = rooms.bookings.all
-          render json: bookings
+        # rooms = Room.find(params[:room_id])
+        # bookings = rooms.bookings.all
+        @all_bookings = Booking.all
+        @booking = Room.find(params[:room_id]).bookings
+        puts @booking.inspect
+
+
+
+      render json: @booking
+
+      #  render json: @all_bookings
       #  json_response(bookings)
       #  render json: bookings
 
       end
+
+       
+
+
 
 
 
       def create
 
       @booking =  current_user.bookings.build(booking_params)
-      booking = Booking.test(booking_params)
 
 
 
-      puts params.inspect
 
-       puts @booking.inspect
-
-
-      #  if Booking.vrij == true
-      #    puts "from bookings#controller is wel beshcikbaar. WEL VRIJ"
-      #
-      # else
-      #   puts  "from de bookings#controller, not avail i guess NIET VRIJ"
-      #
-      #  end
 
         if @booking.save
           render json: @booking
-          puts "SAVED"
+          puts "booking saved!"
+        #  puts @booking.inspect
         else
-          render json: "something went wrong..."
+          render json: "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
+
+
 
         end
       end
@@ -57,11 +60,13 @@ module Api
         # Write your code here
 
 
-        @booking = Booking.find(params[:id])
+         @booking = Room.find(params[:room_id]).bookings
+        #   puts @booking.inspect
+        #
+        #
+        #
+         render json: @booking
 
-        @rooms = Room.find(params[:room_id])
-          render json: @booking
-          render json: "TEST"
       end
 
 
@@ -72,6 +77,19 @@ module Api
 
       def destroy
         # Write your code here
+        @booking = current_user.bookings.find(params[:id])
+        puts @booking.inspect
+        @booking.destroy
+        puts "Booking deleted"
+        render json: "Booking deleted."
+
+
+      #   respond_to do |format|
+      # render json: "Booking deleted."
+      #
+      #     end
+
+
       end
 
       private

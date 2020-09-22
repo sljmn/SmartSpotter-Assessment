@@ -57,5 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 
-gem "slot_machine"
+gem 'validates_overlap', '~> 0.8.6'
 gem 'pry', '~> 0.13.1'

@@ -14,7 +14,7 @@ module Api
       #  booking = Booking.find(params[:id])
         # rooms = Room.find(params[:room_id])
         # bookings = rooms.bookings.all
-        @all_bookings = Booking.all
+      #  @all_bookings = Booking.all
         @booking = Room.find(params[:room_id]).bookings
         puts @booking.inspect
 
@@ -28,7 +28,7 @@ module Api
 
       end
 
-       
+
 
 
 
@@ -58,14 +58,16 @@ module Api
 
       def show
         # Write your code here
+        @room = Room.find(params[:room_id])
+      #  @category = Category.friendly.find(params[:category_id])
 
 
-         @booking = Room.find(params[:room_id]).bookings
-        #   puts @booking.inspect
+         booking = @room.bookings
+         puts @booking.inspect
         #
         #
         #
-         render json: @booking
+         render json: booking
 
       end
 

@@ -18,8 +18,27 @@ module Api
 
       end
       def create
+        puts "**********************"
         puts "CREATE ParticipantsController"
+        puts "**********************"
+          booking = Booking.find(params[:booking_id])
+          puts "participants"
+          puts booking.participants.inspect
+          render json: booking.participants
+
+        @participant =  current_user.bookings.build(participants_params)
+        puts @participant.inspect
+
+
       end
+
+      def participants_params
+        params.permit(
+          :id
+        )
+      end
+
+
     end
   end
 end

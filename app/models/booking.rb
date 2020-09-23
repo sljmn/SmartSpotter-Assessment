@@ -6,6 +6,9 @@ class Booking < ApplicationRecord #::Base
   belongs_to :room
 
   validates :start_time, :end_time, :overlap => {:scope => "room_id"}
+validates_presence_of :date, :start_time, :end_time
+
+
 
 
 

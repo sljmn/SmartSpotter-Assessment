@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
+
   post '/api/v1/rooms/:room_id/bookings', to: 'bookings#create'
-  
+
 end

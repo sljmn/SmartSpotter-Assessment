@@ -43,11 +43,12 @@ module Api
 
 
         if @booking.save
-          render json: @booking
+          render json: @booking, status: :created 
           puts "booking saved!"
         #  puts @booking.inspect
         else
-          render json: "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
+          render json: @booking.errors, status: unpro
+          puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
 
 
 

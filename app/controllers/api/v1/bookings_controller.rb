@@ -9,6 +9,8 @@ module Api
       include ActionController::MimeResponds
 
 
+
+
       def index
       #  @bookings = Booking.all
       #  booking = Booking.find(params[:id])
@@ -17,6 +19,7 @@ module Api
       #  @all_bookings = Booking.all
         @booking = Room.find(params[:room_id]).bookings
         puts @booking.inspect
+        puts "index"
 
 
 
@@ -29,7 +32,13 @@ module Api
       end
 
 
+      def bookings
 
+        bookings = Booking.all
+        puts bookings
+        render json: bookings
+
+      end
 
 
 
@@ -58,16 +67,9 @@ module Api
 
 
       def show
-        # Write your code here
-        @room = Room.find(params[:room_id])
-      #  @category = Category.friendly.find(params[:category_id])
-
-
-         booking = @room.bookings
-         puts @booking.inspect
-        #
-        #
-        #
+      #  @room = Room.find(params[:room_id])
+        # booking = @room.bookings
+        booking = Booking.find(params[:id])
          render json: booking
 
       end
@@ -76,6 +78,32 @@ module Api
 
       def update
         # Write your code here
+
+        @booking = current_user.bookings.find(params[:id])
+
+        puts "******"
+        puts @booking.inspect
+        puts "******"
+        puts current_user.id
+        respond_to do |format|
+          if @booking.update(booking_params)
+
+            format.json { render json: @booking, status: :ok  }
+            puts "******************************"
+            puts "your booking is updated!"
+            puts "******************************"
+          else
+
+          format.json { render json: @booking.errors, status: :unprocessable_entity }
+          puts "******************************"
+          puts "you can only update your own bookings...."
+          puts "******************************"
+      end
+    end
+
+
+
+
       end
 
       def destroy
@@ -87,10 +115,6 @@ module Api
         render json: "Booking deleted."
 
 
-      #   respond_to do |format|
-      # render json: "Booking deleted."
-      #
-      #     end
 
 
       end
@@ -113,4 +137,4 @@ module Api
 
       end
     end
-  end
+    end

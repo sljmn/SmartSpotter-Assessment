@@ -8,6 +8,18 @@ module Api
       include ExceptionHandler
 
       # Write your code here
+
+      def index
+        booking = Booking.find(params[:booking_id])
+        puts "something"
+
+        render json: booking
+        puts booking.inspect
+
+      end
+      def create
+        puts "CREATE ParticipantsController"
+      end
     end
   end
 end

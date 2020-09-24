@@ -21,22 +21,23 @@ module Api
         puts @booking.inspect
         puts "index"
 
+        if @booking.empty?
+          render json: "There are no bookings in this room. Why not book one?"
+        else
+          render json: @booking
 
-
-      render json: @booking
-
-      #  render json: @all_bookings
-      #  json_response(bookings)
-      #  render json: bookings
-
+        end
       end
 
 
       def bookings
 
         bookings = Booking.all
-        puts bookings
-        render json: bookings
+        if bookings.empty?
+          render json: "There are no bookings. Why not book one?"
+        else
+          render json: bookings
+        end
 
       end
 

@@ -8,40 +8,26 @@ module Api
       include ExceptionHandler
       include ActionController::MimeResponds
 
-
-
-
       def index
-      #  @bookings = Booking.all
-      #  booking = Booking.find(params[:id])
-        # rooms = Room.find(params[:room_id])
-        # bookings = rooms.bookings.all
-      #  @all_bookings = Booking.all
         @booking = Room.find(params[:room_id]).bookings
         puts @booking.inspect
         puts "index"
-
         if @booking.empty?
           render json: "There are no bookings in this room. Why not book one?"
         else
           render json: @booking
-
         end
       end
 
 
       def bookings
-
         bookings = Booking.all
         if bookings.empty?
           render json: "There are no bookings. Why not book one?"
         else
           render json: bookings
         end
-
       end
-
-
 
 
       def create
@@ -62,6 +48,7 @@ module Api
       def show
         booking = Booking.find(params[:id])
          render json: booking
+
       end
 
 
@@ -88,10 +75,9 @@ module Api
           puts "******************************"
           puts "you can only update your own bookings...."
           puts "******************************"
-      end
-    end
-
-      end
+            end
+              end
+          end
 
       def destroy
         # Write your code here
@@ -99,11 +85,11 @@ module Api
         puts @booking.inspect
         @booking.destroy
         puts "Booking deleted"
-        render json: "Booking deleted
+        render json: "Booking deleted."
+
       end
 
       private
-
         # Write your code here
 
         def booking_params

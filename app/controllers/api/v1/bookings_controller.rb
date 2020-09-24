@@ -45,12 +45,7 @@ module Api
 
 
       def create
-
       @booking =  current_user.bookings.build(booking_params)
-
-
-
-
 
         if @booking.save
           render json: @booking, status: :created
@@ -59,20 +54,14 @@ module Api
         else
           render json: @booking.errors, status: :unprocessable_entity
           puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
-
-
-
         end
       end
 
 
 
       def show
-      #  @room = Room.find(params[:room_id])
-        # booking = @room.bookings
         booking = Booking.find(params[:id])
          render json: booking
-
       end
 
 

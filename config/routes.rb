@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   post '/api/v1/bookings/:booking_id/participants', to: 'participants#create'
   post '/api/v1/rooms/:room_id/bookings', to: 'bookings#create'
 
+
 end

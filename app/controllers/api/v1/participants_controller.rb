@@ -21,8 +21,10 @@ module Api
         puts "**********************"
         puts "CREATE ParticipantsController"
         puts "**********************"
+
           booking = Booking.find(params[:booking_id])
           puts "participants"
+          puts participants_params
           puts booking.participants.inspect
           render json: booking.participants
 
@@ -34,7 +36,7 @@ module Api
 
       def participants_params
         params.permit(
-          :id
+          :id, :user_id
         )
       end
 

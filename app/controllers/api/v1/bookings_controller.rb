@@ -91,9 +91,6 @@ module Api
       end
     end
 
-
-
-
       end
 
       def destroy
@@ -102,16 +99,10 @@ module Api
         puts @booking.inspect
         @booking.destroy
         puts "Booking deleted"
-        render json: "Booking deleted."
-
-
-
-
+        render json: "Booking deleted
       end
 
       private
-
-
 
         # Write your code here
 

@@ -40,6 +40,24 @@ module Api
 
       def update
         # Write your code here
+        @room = Room.find(params[:id])
+        puts @room.inspect
+
+        # puts "******"
+        # puts @booking.inspect
+        # puts "******"
+        # puts current_user.id
+
+          if @room.update(rooms_params)
+        #
+           render json: @room, status: :ok
+
+           else
+        render json: @room.errors, status: :unprocessable_entity 
+
+             end
+
+
       end
 
       def destroy
@@ -49,7 +67,7 @@ module Api
       private
 
       def rooms_params
-        params.permit
+        params.permit(:name)
         # Write your code here
       end
     end

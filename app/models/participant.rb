@@ -6,5 +6,5 @@ class Participant < ApplicationRecord
 
    validates :booking, :uniqueness => {:scope=>:invitee} #only invite 1 user for 1 room
 
-  # Write your code here
+
 end

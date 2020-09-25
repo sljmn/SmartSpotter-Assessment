@@ -5,12 +5,4 @@ class Room < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
 
-  # how to check if a room is occupied at a certain time....
-
-  def self.check_test
-    puts "CHECK ROOM"
-  end
-
-
-
 end

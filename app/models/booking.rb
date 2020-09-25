@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord #::Base
-  has_many :participants
+  has_many :participants, dependent: :destroy
   belongs_to :user
   belongs_to :room
 

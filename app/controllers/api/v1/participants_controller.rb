@@ -13,7 +13,8 @@ module Api
         booking = Booking.find(params[:booking_id])
         puts "something"
 
-        render json: booking
+
+        render json: booking.participants
         puts booking.inspect
 
       end
@@ -29,14 +30,22 @@ module Api
           render json: booking.participants
 
         @participant =  current_user.bookings.build(participants_params)
+        puts participants_params.inspect
+        puts "****************************************"
         puts @participant.inspect
 
+        booking = Booking.find(params[:booking_id])
+        puts booking.inspect
+        @invitation = booking.participants.create!(id:Participant, booking_id:"167", invitee_id:"2")
+
+        puts "***************** invitation ***********************"
+        @invitation.inspect
 
       end
 
       def participants_params
         params.permit(
-          :id, :user_id
+
         )
       end
 

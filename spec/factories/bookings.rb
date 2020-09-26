@@ -7,5 +7,7 @@ FactoryBot.define do
     date { Faker::Date.forward(days: 2) }
     room { create(:room) }
     user { create(:user) }
+
+   
   end
 end

@@ -1,9 +1,9 @@
 # How to use this api?
-See below short documentation how to setup and use this api.
+See below short documentation how to setup and use this api. The api is live and deployed on heroku: https://evilcorp-api.herokuapp.com/
 
 ## Signup
 Before you can use this API you need to signup, using your @evil-corp.com email address. Other @domains.tld wont work.
-Send a POST request to http://localhost:3000/signup (change http://localhost:3000/ to your domain)
+Send a POST request to https://evilcorp-api.herokuapp.com/signup  
 All request should be in JSON format.
 
 ```
@@ -18,16 +18,17 @@ All request should be in JSON format.
 ```
 
 Response will be something like:
+```
 {
   "message": "Account created successfully",
   "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2MDE1NzMxMzd9.7r4xvkiTdIzsldNn6oyy6Sj-zSPj23f7J1LN3Bl0CE4"
 }
-
+```
 You can use the auth_token to make other requests.  
 
 ## Login
 
-POST http://localhost:3000/auth/login
+POST https://evilcorp-api.herokuapp.com//auth/login
 
 If you already created your account, you can login using your chose email, password. After login an auth_token will be returned, which you need to use to authenticate your requests
 
@@ -42,16 +43,16 @@ Response will be an auth_token, which is needed to make other requests
 
 
 ### Get rooms
-GET http://localhost:3000/api/v1/rooms
+GET https://evilcorp-api.herokuapp.com/api/v1/rooms
 (dont forget to include your auth_token in the authentication)
 
 
-### Get all bookings (this will return all the bookings in the database)
-GET http://localhost:3000/api/v1/bookings
+### Get all bookings (this will return all the bookings in the database, not only yours)
+GET https://evilcorp-api.herokuapp.com/api/v1/bookings
 
 
 ### Make a booking
-POST  http://localhost:3000/api/v1/rooms/:id/bookings
+POST  https://evilcorp-api.herokuapp.com/api/v1/rooms/:id/bookings
 Where :id is the ID of the room you want to book.
 Body to send with your request should include:
 ```
@@ -80,13 +81,13 @@ If the desired date isn't available, an error message will be returned. The scop
 Furthermore, your booking must include the date, start_time, end_time. Without any of these params, booking wont be created.
 
 ### Delete your booking
-DELETE http://localhost:3000/api/v1/rooms/:id/bookings/:id
+DELETE https://evilcorp-api.herokuapp.com/api/v1/rooms/:id/bookings/:id
 
 
 ### Update your booking
 
 
-PUT http://localhost:3000/api/v1/rooms/:id/bookings/:id
+PUT https://evilcorp-api.herokuapp.com/api/v1/rooms/:id/bookings/:id
 
 Include this JSON in the request of your body
 ```
@@ -99,17 +100,17 @@ Include this JSON in the request of your body
 
 ### See all bookings
 
-GET http://localhost:3000/api/v1/bookings
+GET https://evilcorp-api.herokuapp.com/api/v1/bookings
 
 ### Invite other users to your booking
-POST http://localhost:3000/api/v1/bookings/:id/participants
-Invitee_id is the ID of the User you want to invite to your booking
+POST https://evilcorp-api.herokuapp.com/api/v1/bookings/:id/participants
+Invitee_id is the ID of the user you want to invite to your booking. invitee_id must exist otherwise you cant invite them.
 ```
 { "invitee_id": "5" }
 ```
 
-#### See all participants in a booking 
-GET http://localhost:3000/api/v1/bookings/:id/participants
+#### See all participants in a booking
+GET https://evilcorp-api.herokuapp.com/api/v1/bookings/:id/participants
 
 
 # Context

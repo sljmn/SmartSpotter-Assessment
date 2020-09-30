@@ -10,7 +10,13 @@ class ApplicationController < ActionController::API
   before_action :authorize_request
   attr_reader :current_user
 
+def index
+  puts "Test"
+
+end
+
   private
+
 
   # Check for valid request token and return user
   def authorize_request

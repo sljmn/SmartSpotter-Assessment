@@ -1,3 +1,117 @@
+# How to use this api?
+See below short documentation how to setup and use this api.
+
+## Signup
+Before you can use this API you need to signup, using your @evil-corp.com email address. Other @domains.tld wont work.
+Send a POST request to http://localhost:3000/signup (change http://localhost:3000/ to your domain)
+All request should be in JSON format.
+
+```
+{
+"user" : {
+"name": "John Doe",
+"email":  "johndoe@evil-corp.com",
+"password": "foo",
+"password_confirmation": "foo"
+
+}}
+```
+
+Response will be something like:
+{
+  "message": "Account created successfully",
+  "auth_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2MDE1NzMxMzd9.7r4xvkiTdIzsldNn6oyy6Sj-zSPj23f7J1LN3Bl0CE4"
+}
+
+You can use the auth_token to make other requests.  
+
+## Login
+
+POST http://localhost:3000/auth/login
+
+If you already created your account, you can login using your chose email, password. After login an auth_token will be returned, which you need to use to authenticate your requests
+
+```
+{
+"user" : {
+"email":  "johndoe@evil-corp.com",
+"password": "foo"
+}}
+```
+Response will be an auth_token, which is needed to make other requests
+
+
+### Get rooms
+GET http://localhost:3000/api/v1/rooms
+(dont forget to include your auth_token in the authentication)
+
+
+### Get all bookings (this will return all the bookings in the database)
+GET http://localhost:3000/api/v1/bookings
+
+
+### Make a booking
+POST  http://localhost:3000/api/v1/rooms/:id/bookings
+Where :id is the ID of the room you want to book.
+Body to send with your request should include:
+```
+{
+   "start_time": "20:20",
+   "end_time": "20:25",
+   "date": "2020-09-25 08:52:21"
+
+  }
+  ```
+
+  This will create a new booking in our database
+```
+  #<Booking id: 184, date: "2020-09-25", room_id: 1, user_id: 5, created_at: "2020-09-30 17:40:15", updated_at: "2020-09-30 17:40:15", start_time: "2020-09-30 18:20:00", end_time: "2020-09-30 18:25:00">
+```
+If the desired date isn't available, an error message will be returned. The scope of the booking is data and room. So if the timeslot of your booking isnt available, try a different date or room.
+
+```
+{
+  "start_time": [
+    "overlaps with another record"
+  ]
+}
+```
+
+Furthermore, your booking must include the date, start_time, end_time. Without any of these params, booking wont be created.
+
+### Delete your booking
+DELETE http://localhost:3000/api/v1/rooms/:id/bookings/:id
+
+
+### Update your booking
+
+
+PUT http://localhost:3000/api/v1/rooms/:id/bookings/:id
+
+Include this JSON in the request of your body
+```
+{
+   "start_time": "20:22",
+   "end_time": "20:25",
+   "date": "2020-09-25 08:52:21"
+}
+  ```
+
+### See all bookings
+
+GET http://localhost:3000/api/v1/bookings
+
+### Invite other users to your booking
+POST http://localhost:3000/api/v1/bookings/:id/participants
+Invitee_id is the ID of the User you want to invite to your booking
+```
+{ "invitee_id": "5" }
+```
+
+#### See all participants in a booking 
+GET http://localhost:3000/api/v1/bookings/:id/participants
+
+
 # Context
 
 Evil Corp is a growing company, and has a lovely office in Amsterdam.

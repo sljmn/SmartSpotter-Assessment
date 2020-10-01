@@ -33,6 +33,13 @@ module Api
       def create
       @booking =  current_user.bookings.build(booking_params)
 
+        check_booking_time_slot = Booking.check_time_slot?(booking_params)
+        if check_booking_time_slot == false
+          render json: "start_time must come before end_time ", status: :unprocessable_entity
+          puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
+
+        else
+
         if @booking.save
           render json: @booking, status: :created
           puts "booking saved! your booking is on #{@booking.date} from  #{@booking.start_time} until #{@booking.end_time}"
@@ -40,6 +47,7 @@ module Api
         else
           render json: @booking.errors, status: :unprocessable_entity
           puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
+        end
         end
       end
 

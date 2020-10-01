@@ -34,8 +34,9 @@ module Api
       @booking =  current_user.bookings.build(booking_params)
 
         check_booking_time_slot = Booking.check_time_slot?(booking_params)
-        if check_booking_time_slot == false
-          render json: "start_time must come before end_time ", status: :unprocessable_entity
+        check_date_in_past = Booking.check_date?(booking_params)
+        if check_booking_time_slot == false || check_date_in_past == false
+          render json: "check of these errors: start_time must come before end_time or the date may not be in the past", status: :unprocessable_entity
           puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
 
         else
@@ -63,28 +64,41 @@ module Api
 
       def update
         # Write your code here
+        puts "UPDATE ACTION"
+        check_booking_time_slot = Booking.check_time_slot?(booking_params)
+        check_date_in_past = Booking.check_date?(booking_params)
 
-        @booking = current_user.bookings.find(params[:id])
+        if check_booking_time_slot == false || check_date_in_past == false
+          render json: "check of these errors: start_time must come before end_time or the date may not be in the past", status: :unprocessable_entity
+          puts "something went wrong... this time slot isnt available, try another room/ date or timeslot!"
+        else
+          @booking = current_user.bookings.find(params[:id])
 
-        puts "******"
-        puts @booking.inspect
-        puts "******"
-        puts current_user.id
-        respond_to do |format|
-          if @booking.update(booking_params)
+          puts "******"
+          puts @booking.inspect
+          puts "******"
+          puts current_user.id
 
-            format.json { render json: @booking, status: :ok  }
+
+          respond_to do |format|
+            if @booking.update(booking_params)
+
+              format.json { render json: @booking, status: :ok  }
+              puts "******************************"
+              puts "your booking is updated!"
+              puts "******************************"
+            else
+
+            format.json { render json: @booking.errors, status: :unprocessable_entity }
             puts "******************************"
-            puts "your booking is updated!"
+            puts "you can only update your own bookings...."
             puts "******************************"
-          else
-
-          format.json { render json: @booking.errors, status: :unprocessable_entity }
-          puts "******************************"
-          puts "you can only update your own bookings...."
-          puts "******************************"
-            end
               end
+                end
+
+        end
+
+
           end
 
       def destroy

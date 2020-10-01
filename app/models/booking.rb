@@ -26,10 +26,29 @@ class Booking < ApplicationRecord #::Base
       puts false
       return false
     else
-      puts false 
+      puts false
       return false
     end
 
   end
+
+
+  def self.check_date?(params)
+    date = params[:date]
+    puts date.inspect
+    converted_date = Date.parse(date)
+
+
+    if converted_date > Date.today
+      puts true
+      return true
+    else
+      puts false
+      return false
+
+    end
+  end
+
+
 
 end

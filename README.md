@@ -30,7 +30,7 @@ You can use the auth_token to make other requests.
 
 POST https://evilcorp-api.herokuapp.com//auth/login
 
-If you already created your account, you can login using your chose email, password. After login an auth_token will be returned, which you need to use to authenticate your requests
+If you already created your account, you can login using your chosen email and password. After login an auth_token will be returned, which you need to use to authenticate your requests
 
 ```
 {
